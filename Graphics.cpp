@@ -96,7 +96,7 @@ void Graphics::ClearBuffer(float red, float green, float blue) noexcept {
 	pContext->ClearRenderTargetView(pTarget.Get(), color);
 }
 
-void Graphics::DrawTestTriangle() {
+void Graphics::DrawTestTriangle(float angle) {
 
 	HRESULT hr;
 
@@ -117,18 +117,25 @@ void Graphics::DrawTestTriangle() {
 	};
 
 	//Create Vertex Buffer (2d Triangle)
-	Vertex vertices[] = {
+	const Vertex vertices[] = {
 
 		{ 0.0f,0.5f, 255, 0, 0, 0 },
 		{ 0.5f,-0.5f, 0, 255, 0, 0 },
 		{ -0.5f,-0.5f, 0, 0, 255, 0 },
 		{ -0.3f,0.3f, 0, 0, 255, 0 },
 		{ 0.3f,0.3f, 0, 255, 0, 0 },
-		{ 0.0f,-1.8f, 255, 0, 0, 0 },
+		{ 0.0f,-1.0f, 255, 0, 0, 0 },
 	
 	};
 
-	vertices[0].color.g = 255;
+	// Origin Position
+	//  X  Y
+	// (0,0.5) 
+	// (0.5, -0.5)
+	// (-0.5, -0.5)
+	// [0.0, 0.5]
+
+
 	wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
 	D3D11_BUFFER_DESC bd = {};
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
@@ -168,6 +175,43 @@ void Graphics::DrawTestTriangle() {
 
 	// Attach Index Buffer to Pipeline
 	pContext->IASetIndexBuffer(pIndexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0u);
+
+	// Create const buffer for transformation matrix (Do matrix transformation instead of moving sending a new vertex buffer)
+	struct ConstantBuffer {
+		struct {
+			float element[4][4];
+		}transformation;
+	};
+
+	const ConstantBuffer cb = {
+		{
+			// (3.0f / 4.0f) scaling to prevent model from being distored when rotating
+			(3.0f / 4.0f) * std::cos(angle),  std::sin(angle), 0.0f, 0.0f,
+			(3.0f / 4.0f) * -std::sin(angle), std::cos(angle), 0.0f, 0.0f,
+			0.0f,							  0.0f,            1.0f, 0.0f,
+			0.0f,							  0.0f,            0.0f, 1.0f,
+		}
+	};
+
+	// [1, 2, 3, 4] 
+	// [5, 6, 7, 8]
+	// [9, 10, 11, 12]
+	// [13, 14, 15, 16
+
+	wrl::ComPtr<ID3D11Buffer> pConstantBuffer;
+	D3D11_BUFFER_DESC cbd = {};
+	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbd.Usage = D3D11_USAGE_DYNAMIC;
+	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cbd.MiscFlags = 0u;
+	cbd.ByteWidth = sizeof(cb);
+	cbd.StructureByteStride = 0u;
+	D3D11_SUBRESOURCE_DATA csd = {};
+	csd.pSysMem = &cb;
+	GFX_THROW_INFO(pDevice->CreateBuffer(&cbd, &csd, &pConstantBuffer));
+
+	// Attach const buffer to vertex shader
+	pContext->VSSetConstantBuffers(0u, 1u, pConstantBuffer.GetAddressOf());
 
 	// Create Pixel Shader
 	wrl::ComPtr<ID3D11PixelShader> pPixelShader;
@@ -213,12 +257,12 @@ void Graphics::DrawTestTriangle() {
 
 	// configure viewport
 	D3D11_VIEWPORT vp;
-	vp.Width = 400;
-	vp.Height = 300;
+	vp.Width = 800;
+	vp.Height = 600;
 	vp.MinDepth = 0;
 	vp.MaxDepth = 1;
-	vp.TopLeftX = 100;
-	vp.TopLeftY = 100;
+	vp.TopLeftX = 0;
+	vp.TopLeftY = 0;
 	pContext->RSSetViewports(1u, &vp);
 
 	GFX_THROW_INFO_ONLY(pContext->DrawIndexed((UINT)std::size(indices), 0u, 0u));
