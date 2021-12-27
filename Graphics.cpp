@@ -1,8 +1,13 @@
 #include "Graphics.h"
 #include <sstream>
 #include <d3dcompiler.h>
+#include <cmath>
+#include <DirectXMath.h>
 
 namespace wrl = Microsoft::WRL;
+
+namespace dx = DirectX;
+
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "D3DCompiler.lib")
 
@@ -96,7 +101,7 @@ void Graphics::ClearBuffer(float red, float green, float blue) noexcept {
 	pContext->ClearRenderTargetView(pTarget.Get(), color);
 }
 
-void Graphics::DrawTestTriangle(float angle) {
+void Graphics::DrawTestTriangle(float angle, float x, float y) {
 
 	HRESULT hr;
 
@@ -120,7 +125,7 @@ void Graphics::DrawTestTriangle(float angle) {
 	const Vertex vertices[] = {
 
 		{ 0.0f,0.5f, 255, 0, 0, 0 },
-		{ 0.5f,-0.5f, 0, 255, 0, 0 },
+		{ 0.5f,-0.5f, 0, 255, 250, 0 },
 		{ -0.5f,-0.5f, 0, 0, 255, 0 },
 		{ -0.3f,0.3f, 0, 0, 255, 0 },
 		{ 0.3f,0.3f, 0, 255, 0, 0 },
@@ -128,12 +133,6 @@ void Graphics::DrawTestTriangle(float angle) {
 	
 	};
 
-	// Origin Position
-	//  X  Y
-	// (0,0.5) 
-	// (0.5, -0.5)
-	// (-0.5, -0.5)
-	// [0.0, 0.5]
 
 
 	wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
@@ -178,25 +177,19 @@ void Graphics::DrawTestTriangle(float angle) {
 
 	// Create const buffer for transformation matrix (Do matrix transformation instead of moving sending a new vertex buffer)
 	struct ConstantBuffer {
-		struct {
-			float element[4][4];
-		}transformation;
+		dx::XMMATRIX transform;
 	};
 
 	const ConstantBuffer cb = {
 		{
-			// (3.0f / 4.0f) scaling to prevent model from being distored when rotating
-			(3.0f / 4.0f) * std::cos(angle),  std::sin(angle), 0.0f, 0.0f,
-			(3.0f / 4.0f) * -std::sin(angle), std::cos(angle), 0.0f, 0.0f,
-			0.0f,							  0.0f,            1.0f, 0.0f,
-			0.0f,							  0.0f,            0.0f, 1.0f,
+			dx::XMMatrixTranspose(
+				dx::XMMatrixRotationZ(angle) *
+				dx::XMMatrixScaling(3.0f / 4.0f, 1.0f, 1.0f) *
+				dx::XMMatrixTranslation(x, y, 0.0f)
+			)
 		}
 	};
 
-	// [1, 2, 3, 4] 
-	// [5, 6, 7, 8]
-	// [9, 10, 11, 12]
-	// [13, 14, 15, 16
 
 	wrl::ComPtr<ID3D11Buffer> pConstantBuffer;
 	D3D11_BUFFER_DESC cbd = {};
@@ -252,7 +245,7 @@ void Graphics::DrawTestTriangle(float angle) {
 	// Bind render target
 	pContext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), nullptr);
 
-	// Set primitive topology to triangle list (groups of 3 verticies make triangle)
+	// Set primitive topology to triangle list (groups of verticies make multiple triangles)
 	pContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	// configure viewport
