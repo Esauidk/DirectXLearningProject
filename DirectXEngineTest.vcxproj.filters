@@ -16,6 +16,21 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{ab475ee5-6b49-42a4-8152-e5d0ef8efbba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Macros">
+      <UniqueIdentifier>{bf1f188b-87cf-4412-b54b-99541fe258ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Drawable">
+      <UniqueIdentifier>{47cc1f29-2f8f-4f65-9592-aea8bc02403b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Bindable">
+      <UniqueIdentifier>{1b1ae5bf-6982-4e38-b9ad-7008e37abd10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Drawable">
+      <UniqueIdentifier>{6d9efa6f-19d0-48ce-9d89-eb2b9c5c1e68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bindable">
+      <UniqueIdentifier>{4364a2d7-8ff8-4cdd-bb3c-0e44911dc001}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -44,6 +59,18 @@
     </ClCompile>
     <ClCompile Include="DxgiInfoManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bindable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BindableBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>Source Files\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="InputLayout.cpp">
+      <Filter>Source Files\Bindable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +103,27 @@
     </ClInclude>
     <ClInclude Include="DxgiInfoManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowMacros.h">
+      <Filter>Header Files\Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsMacros.h">
+      <Filter>Header Files\Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="Bindable.h">
+      <Filter>Header Files\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="BindableBase.h">
+      <Filter>Header Files\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>Header Files\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>Header Files\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="InputLayout.h">
+      <Filter>Header Files\Bindable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
