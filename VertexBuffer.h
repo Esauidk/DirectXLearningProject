@@ -2,10 +2,15 @@
 #include "Bindable.h"
 #include "GraphicsMacros.h"
 
+// V represents the datatype for vertices in the buffer
 template<typename V>
 class VertexBuffer : public Bindable
 {
 public:
+	// Creates a vertex buffer based off inputs and datatype
+	//
+	// gfx: A reference to a Graphics instance
+	// vertices: A reference to a collection of vertices to store in the buffer
 	VertexBuffer(Graphics& gfx, const std::vector<V>& vertices) : objectStride(sizeof(V)) {
 		INFOMAN(gfx);
 
