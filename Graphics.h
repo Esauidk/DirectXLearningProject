@@ -5,6 +5,10 @@
 #include <wrl.h>
 #include <vector>
 #include "DxgiInfoManager.h"
+#include <d3dcompiler.h>
+#include <DirectXMath.h>
+#include <memory>
+#include <random>
 
 class Graphics
 {

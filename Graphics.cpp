@@ -1,8 +1,6 @@
 #include "Graphics.h"
 #include <sstream>
-#include <d3dcompiler.h>
 #include <cmath>
-#include <DirectXMath.h>
 #include "GraphicsMacros.h"
 
 namespace wrl = Microsoft::WRL;

@@ -1,7 +1,7 @@
 #include "IndexBuffer.h"
 #include "GraphicsMacros.h"
 
-IndexBuffer::IndexBuffer(Graphics& gfx, const std::vector<unsigned short>& indices) : count(indices.size()){
+IndexBuffer::IndexBuffer(Graphics& gfx, const std::vector<unsigned short>& indices) : count((UINT)indices.size()){
 	INFOMAN(gfx);
 
 	D3D11_BUFFER_DESC ibd = {};
