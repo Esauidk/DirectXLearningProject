@@ -1,5 +1,5 @@
 # DirectXLearningProject
-A repo containing files involved with my exploration of direct X after following along with PlanetChilli's tutorial with Direct3D
+A repo containing files involved with my exploration of DirectX after following along with PlanetChilli's tutorial with Direct3D
 
 The Drawable & Bindable Graphics framework was designed by PlanetChilli (Otherwise known as ChiliTomatoNoodle on yt)
 
@@ -12,7 +12,7 @@ The Drawable & Bindable Graphics framework was designed by PlanetChilli (Otherwi
 
 
 ## Device
-**The device is a compoenent of Direct3D that allows you to create data structures and store information on the GPU about the current rendering state**
+**The device is a component of Direct3D that allows you to allocate data structures and store information on the GPU about the current rendering state**
 
 
 Examples of uses of the device are:
@@ -27,11 +27,11 @@ Examples of uses of the device are:
 [**For more information about the device**](https://docs.microsoft.com/en-us/windows/win32/direct3d9/direct3d-devices)
 
 ## Swap Chain
-The swap chain represent the current frame being presented to you the viewer. The swape chain has a lot of settings that can be adjusted but the idea is that you have two(or more) buffers, the **front** and **back** buffers. 
+The swap chain represent the current frame being presented to you, the viewer. The swap chain has a lot of settings that can be adjusted but the idea is that you have two(or more) buffers, the **front** and **back** buffers. 
 
 The names **front** and **back** represent which buffer is the one being presented. The **back** buffer will be where current draw calls are being directed to while the **front** buffer will be what the viewer sees. 
 
-Once the drawing of the **back** buffer has been completed, the buffers will be *switch* and the previous **back** buffer will be the current **front** buffer while the previous **front** buffer will be the current **back** buffer
+Once the drawing of the **back** buffer has been completed, the buffers will be *switched* and the previous **back** buffer will be the current **front** buffer while the previous **front** buffer will be the current **back** buffer
 
 ![A representation of a triple buffer swap chain](https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Swap_chain_depiction.svg/1920px-Swap_chain_depiction.svg.png "A representation of a triple buffer swap chain")
 
@@ -42,7 +42,7 @@ Once the drawing of the **back** buffer has been completed, the buffers will be 
 - VertexBuffer
 : A collection of vertex data of the current object
 - IndexBuffer
-: A collection of indexes representing the order of verticies to use when drawing the desired topology shapes
+: A collection of indexes representing the order of verticies to use when drawing the desired topology shape
 - VerexShader
 : GPU instructions used to perform mathmatical operations to each vertex positioning before presentation
 - PixelShader
@@ -59,7 +59,7 @@ Once the drawing of the **back** buffer has been completed, the buffers will be 
 [**For more information about the context**](https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-intro)
 
 ## Creating an Object
-**Creating an object involves a combination of using the device to create data structures(like buffers) and using the context to attach them to the pipeline. Every object must go through creating, defining, and attaching pipeline resources before being raterized to the swap chain buffers**
+**Creating an object involves a combination of using the device to allocate data structures(like buffers) and using the context to attach them to the pipeline. Every object must go through creating, defining, and attaching pipeline resources before being raterized to the swap chain buffers**
 
 
 ### Example of creating a box
