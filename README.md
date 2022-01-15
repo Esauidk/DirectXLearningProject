@@ -5,7 +5,7 @@ The Drawable & Bindable Graphics framework was designed by PlanetChilli (Otherwi
 
 
 # Direct X Pipeline
-**Before rendering an object in Direct X, there are settings that need to be setup**:
+**Before rendering an object in Direct X, there are components that need to be initialized**:
 - Device
 - Swap Chain
 - Context
