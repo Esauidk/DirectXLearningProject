@@ -447,10 +447,37 @@ pContext->IASetInputLayout(pInputLayout.Get());
 pContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 ```
 # Drawable & Bindable Framework Design
-**The framework is designed to shorten and abstract the creation of objects in DirectX**
+**The framework is designed to shorten and abstract the creation of objects in DirectX. There are 3 parts of it, the Graphics interface, the Bindable Interface, and the Drawable Interface. These all work together to allow multiple object creation in a single 3D scene**
 
-
-*To be filled in*
 ## Graphics
+**This interface is the main controller of 3D scene**
+
+### Pipeline setup
+**This interface will handle the creation of the crucial components of the pipeline (Device, Swap Chain, Context)**
+
+Along with that, it will keep a reference to:
+- Device
+- Swap Chain
+- Context
+- RenderTargetView
+: A pipeline handled data structure for referencing the current back buffer
+- DepthStencilView
+: A pipeline handled data structure for referncing the current depth view frame
+- A projection matrix
+: Used for translating the vertex position to 3D camera space (perspective, orthographic)
+
+There are also five key functions to the Graphics interface:
+- `EndFrame()`
+: Presents the current back buffer by switching the front and back buffer
+- `ClearBuffer()`
+: Wipes everything on the current back buffer
+- `DrawIndex()`
+: Draws onto the back buffer with the resources attached to the pipeline (assumes that indexing is done, can be changed to work without indexing)
+- `SetProjection()`
+: Updates the current projection matrix in the 3D Scene
+- `GetProjection()`
+: Returns the current project matrix being used in the 3D scene
 ## Bindable
+**To be filled in**
 ## Drawable
+**To be filled in**
