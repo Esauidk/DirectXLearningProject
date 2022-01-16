@@ -477,7 +477,27 @@ There are also five key functions to the Graphics interface:
 : Updates the current projection matrix in the 3D Scene
 - `GetProjection()`
 : Returns the current project matrix being used in the 3D scene
+
 ## Bindable
-**To be filled in**
+**This interface represents one of the data structures that can be attached to the pipline**
+
+Some examples of Bindable structures are:
+- VertexBuffer
+- ConstantBuffers
+- IndexBuffer
+- InputLayout
+- Shaders (Vertex and Pixel)
+- Topology
+- etc
+
+The only function required of a Bindable is called `Bind()`. The expected implementation is that the context step of attaching to the pipeline is done in this function while the device step is handled in the constructor.
+
+### Helper Functions
+**There are helper functions that only Bindable objects can call, these are implemented by the Bindable interface and allow Bindables to interact with the Graphics instance:**
+- GetContext()
+: Returns the current reference to the Context of a Graphics instance
+- GetDevice()
+: Returns the current reference to the Device of a Graphics instance
+
 ## Drawable
 **To be filled in**
