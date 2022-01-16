@@ -697,4 +697,5 @@ for (auto& b : boxes) {
 (Graphics instance here).EndFrame();
 ```
 
+![Gif of Floating Boxes](https://media.giphy.com/media/hVsP8KfbcwItVhMg5s/giphy.gif)
 
