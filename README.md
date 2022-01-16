@@ -514,7 +514,7 @@ There are 5 functions tied to a Drawable:
 - `Update()`
 : Performs changes to a Drawable's state based off a change of time (movement, rotation, scaling, etc)
 
-The Drawable interface already implements the crucial functions list, new Drawables will only need to implement certain functions due to behavior varying between Drawables:
+The Drawable interface already implements the crucial functions listed, new Drawables will only need to implement certain functions due to behavior varying between Drawables:
 - `GetTransformXM()`
 - `Update()`
 
