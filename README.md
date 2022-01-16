@@ -58,9 +58,20 @@ Once the drawing of the **back** buffer has been completed, the buffers will be 
 
 [**For more information about the context**](https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-intro)
 
+## Extra
+
+**There are more parts of the pipeline not covered in this readme**
+
+
+![**Image of Direct3D Pipeline**](https://docs.microsoft.com/en-us/windows/win32/direct3d11/images/d3d11-pipeline-stages.jpg "A diagram of the pipeline order")
+
+
+[**For more information of the pipeline**](https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-graphics-pipeline)
+
+
+
 ## Creating an Object
 **Creating an object involves a combination of using the device to allocate data structures(like buffers) and using the context to attach them to the pipeline. Every object must go through creating, defining, and attaching pipeline resources before being raterized to the swap chain buffers**
-
 
 ### Example of creating a box
 
