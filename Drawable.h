@@ -7,6 +7,8 @@ class Bindable;
 class IndexBuffer;
 
 class Drawable {
+	template<class T>
+	friend class DrawableBase;
 public:
 	Drawable() = default;
 	Drawable(const Drawable&) = delete;
@@ -20,6 +22,8 @@ public:
 	//
 	// dt: The change of time since the last call
 	virtual void Update(float dt) noexcept = 0;
+	virtual ~Drawable() = default;
+protected:
 	// Adds a bindable to this object's collection (I.E. attaching it to this object)
 	//
 	// bind: The bindable to be added to this object's collection
@@ -30,9 +34,11 @@ public:
 	//
 	// ibuf: The index buffer for this object
 	// WARNING: ONLY 1 call of AddIndexBuffer() is allowed
-	void AddIndexBuffer(std::unique_ptr<class IndexBuffer> ibuf) noexcept;
-	virtual ~Drawable() = default;
+	void AddIndexBuffer(std::unique_ptr<class IndexBuffer> ibuf) noexcept(!IS_DEBUG);
+	
 private:
-	const IndexBuffer* pIndexBuffer = nullptr;
+	virtual const std::vector<std::unique_ptr<Bindable>>& GetStaticBinds() const noexcept = 0;
+private:
+	const class IndexBuffer* pIndexBuffer = nullptr;
 	std::vector<std::unique_ptr<Bindable>> binds;
 };

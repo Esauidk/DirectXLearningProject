@@ -14,7 +14,7 @@ public:
 	TransformConstantBuffer(Graphics& gfx, const Drawable& parent);
 	void Bind(Graphics& gfx) noexcept override;
 private:
-	VertexConstantBuffer<DirectX::XMMATRIX> transMatBuf;
+	static std::unique_ptr<VertexConstantBuffer<DirectX::XMMATRIX>> transMatBuf;
 	const Drawable& parent;
 };
 

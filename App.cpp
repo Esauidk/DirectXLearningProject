@@ -9,8 +9,8 @@ App::App():wnd(800, 600, "Direct X Test"), timer(){
 	std::uniform_real_distribution<float> odist(0.0f, 3.1415f * 2.0f);
 	std::uniform_real_distribution<float> rdist(6.0f, 20.0f);
 
-	for (auto i = 0; i < 150; i++) {
-		boxes.push_back(std::make_unique<Box>(
+	for (auto i = 0; i < 80; i++) {
+		drawables.push_back(std::make_unique<Box>(
 			wnd.Gfx(),
 			rng,
 			adist,
@@ -37,8 +37,8 @@ int App::Go() {
 void App::DoFrame() {
 	auto dt = timer.Mark();
 	wnd.Gfx().ClearBuffer(0.07f, 0.0f, 0.12f);
-	for (auto& b : boxes) {
-		b->Update(dt);
+	for (auto& b : drawables) {
+		b->Update(dt/8);
 		b->Draw(wnd.Gfx());
 	}
 	wnd.Gfx().EndFrame();
