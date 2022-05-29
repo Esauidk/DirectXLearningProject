@@ -1,40 +1,32 @@
 #pragma once
-
 #include "DrawableBase.h"
-class Box : public DrawableBase<Box>
+class Sheet : public DrawableBase<Sheet>
 {
 public:
-	Box(Graphics& gfx,
-		std::mt19937& rng,
+	Sheet(Graphics& gfx, std::mt19937& rng,
 		std::uniform_real_distribution<float>& adist,
 		std::uniform_real_distribution<float>& ddist,
 		std::uniform_real_distribution<float>& odist,
-		std::uniform_real_distribution<float>& rdist,
-		std::uniform_real_distribution<float>& bdist);
+		std::uniform_real_distribution<float>& rdist);
 	void Update(float dt) noexcept override;
 	DirectX::XMMATRIX GetTransformXM() const noexcept override;
 private:
+	// Transform Related
 	float r;
-	// z-axis
 	float roll = 0.0f;
-	// x-axis
 	float pitch = 0.0f;
-	// y-axis
 	float yaw = 0.0f;
 	float theta;
 	float phi;
 	float chi;
 
-	// z-axis
+	// Rate of Change Related
 	float droll;
-	// x-axis
 	float dpitch;
-	// y-axis
 	float dyaw;
 	float dtheta;
 	float dphi;
 	float dchi;
 
-	// Model Transform
-	DirectX::XMFLOAT3X3 mt;
 };
+

@@ -7,7 +7,8 @@ Box::Box(Graphics& gfx,
 	std::uniform_real_distribution<float>& adist,
 	std::uniform_real_distribution<float>& ddist,
 	std::uniform_real_distribution<float>& odist,
-	std::uniform_real_distribution<float>& rdist) :
+	std::uniform_real_distribution<float>& rdist,
+	std::uniform_real_distribution<float>& bdist) :
 	r(rdist(rng)),
 	droll(ddist(rng)),
 	dpitch(ddist(rng)),
@@ -20,6 +21,8 @@ Box::Box(Graphics& gfx,
 	phi(adist(rng))
 {
 	namespace dx = DirectX;
+
+	//mt = { 1.0f, 1.0f, 1.0f };
 
 	if (!IsStaticInitialized()) {
 		struct Vertex {
@@ -45,18 +48,20 @@ Box::Box(Graphics& gfx,
 				float g;
 				float b;
 				float a;
-			}face_colors[6];
+			}face_colors[8];
 		};
 
 		const FaceColorConstantBuffer fccb =
 		{
 			{
-				{ 1.0f,0.0f,1.0f },
+				{ 1.0f,1.0f,1.0f },
 				{ 1.0f,0.0f,0.0f },
 				{ 0.0f,1.0f,0.0f },
-				{ 0.0f,0.0f,1.0f },
 				{ 1.0f,1.0f,0.0f },
+				{ 0.0f,0.0f,1.0f },
+				{ 1.0f,0.0f,1.0f },
 				{ 0.0f,1.0f,1.0f },
+				{ 0.0f,0.0f,0.0f },
 			}
 		};
 
@@ -77,6 +82,10 @@ Box::Box(Graphics& gfx,
 	
 
 	AddBind(std::make_unique<TransformConstantBuffer>(gfx, *this));
+	dx::XMStoreFloat3x3(
+		&mt,
+		dx::XMMatrixScaling(1.0f, 1.0f, bdist(rng))
+	);
 }
 
 void Box::Update(float dt) noexcept {
@@ -88,9 +97,11 @@ void Box::Update(float dt) noexcept {
 }
 
 DirectX::XMMATRIX Box::GetTransformXM() const noexcept {
-	return DirectX::XMMatrixRotationRollPitchYaw(pitch, yaw, roll) *
-		DirectX::XMMatrixTranslation(r, 0.0f, 0.0f)*
-		DirectX::XMMatrixRotationRollPitchYaw(theta, phi, chi)*
-		DirectX::XMMatrixTranslation(0.0f, 0.0f, 20.0f);
+	namespace dx = DirectX;
+	return dx::XMLoadFloat3x3(&mt) *
+		dx::XMMatrixRotationRollPitchYaw(pitch, yaw, roll) *
+		dx::XMMatrixTranslation(r, 0.0f, 0.0f) *
+		dx::XMMatrixRotationRollPitchYaw(theta, phi, chi) *
+		dx::XMMatrixTranslation(0.0f, 0.0f, 20.0f);
 
 }
