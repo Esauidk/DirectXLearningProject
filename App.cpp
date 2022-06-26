@@ -1,5 +1,6 @@
 #include "App.h"
 #include "Box.h"
+#include "SkinnedBox.h"
 #include <memory>
 #include "Sheet.h"
 #include "Surface.h"
@@ -30,6 +31,11 @@ App::App():wnd(800, 600, "Direct X Test"), timer(){
 					gfx, rng, adist, ddist,
 					odist, rdist
 					);
+			case 2:
+				return std::make_unique<SkinnedBox>(
+					gfx, rng, adist, ddist,
+					odist, rdist
+					);
 			default:
 				assert(false && "bad drawable type in factory");
 				return {};
@@ -42,10 +48,10 @@ App::App():wnd(800, 600, "Direct X Test"), timer(){
 		std::uniform_real_distribution<float> ddist{ 0.0f,PI * 0.5f };
 		std::uniform_real_distribution<float> odist{ 0.0f,PI * 0.08f };
 		std::uniform_real_distribution<float> rdist{ 6.0f,20.0f };
-		std::uniform_real_distribution<float> bdist{ 0.4f,20.0f };
+		std::uniform_real_distribution<float> bdist{ 0.4f,5.0f };
 		std::uniform_int_distribution<int> latdist{ 5,20 };
 		std::uniform_int_distribution<int> longdist{ 10,40 };
-		std::uniform_int_distribution<int> typedist{ 0,1 };
+		std::uniform_int_distribution<int> typedist{ 0,2 };
 	};
 	
 

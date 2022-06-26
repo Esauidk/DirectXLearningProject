@@ -108,6 +108,9 @@
     <ClCompile Include="Sheet.cpp">
       <Filter>Source Files\Drawable</Filter>
     </ClCompile>
+    <ClCompile Include="SkinnedBox.cpp">
+      <Filter>Source Files\Drawable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreWin.h">
@@ -219,6 +222,9 @@
       <Filter>Header Files\Bindable</Filter>
     </ClInclude>
     <ClInclude Include="Sheet.h">
+      <Filter>Header Files\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="SkinnedBox.h">
       <Filter>Header Files\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
