@@ -9,8 +9,8 @@ TransformConstantBuffer::TransformConstantBuffer(Graphics& gfx, const Drawable& 
 
 void TransformConstantBuffer::Bind(Graphics& gfx) noexcept {
 	transMatBuf->Update(gfx,
-			DirectX::XMMatrixTranspose(
-				parent.GetTransformXM() * gfx.GetProjection()
+		DirectX::XMMatrixTranspose(
+			parent.GetTransformXM() * gfx.GetCamera() * gfx.GetProjection()
 			)
 		);
 	transMatBuf->Bind(gfx);

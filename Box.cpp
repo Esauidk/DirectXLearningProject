@@ -100,10 +100,9 @@ void Box::Update(float dt) noexcept {
 
 DirectX::XMMATRIX Box::GetTransformXM() const noexcept {
 	namespace dx = DirectX;
-	return dx::XMLoadFloat3x3( &mt ) *
-		dx::XMMatrixRotationRollPitchYaw( pitch,yaw,roll ) *
-		dx::XMMatrixTranslation( r,0.0f,0.0f ) *
-		dx::XMMatrixRotationRollPitchYaw( theta,phi,chi ) *
-		dx::XMMatrixTranslation( 0.0f,0.0f,20.0f );
+	return dx::XMLoadFloat3x3(&mt) *
+		dx::XMMatrixRotationRollPitchYaw(pitch, yaw, roll) *
+		dx::XMMatrixTranslation(r, 0.0f, 0.0f) *
+		dx::XMMatrixRotationRollPitchYaw(theta, phi, chi);
 
 }

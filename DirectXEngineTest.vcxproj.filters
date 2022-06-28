@@ -34,6 +34,12 @@
     <Filter Include="Header Files\Geometry">
       <UniqueIdentifier>{d0ba5b5b-5eae-46aa-b0a4-3b9b84fadcdb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\MGUI">
+      <UniqueIdentifier>{46242f3f-9656-4883-9e4e-1af9e3cbc087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MGUI">
+      <UniqueIdentifier>{46326560-195e-4222-8fcf-986a28aa5307}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -110,6 +116,33 @@
     </ClCompile>
     <ClCompile Include="SkinnedBox.cpp">
       <Filter>Source Files\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui-1.88\imgui.cpp">
+      <Filter>Source Files\MGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui-1.88\imgui_demo.cpp">
+      <Filter>Source Files\MGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui-1.88\imgui_draw.cpp">
+      <Filter>Source Files\MGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui-1.88\imgui_impl_dx11.cpp">
+      <Filter>Source Files\MGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui-1.88\imgui_impl_win32.cpp">
+      <Filter>Source Files\MGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui-1.88\imgui_tables.cpp">
+      <Filter>Source Files\MGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui-1.88\imgui_widgets.cpp">
+      <Filter>Source Files\MGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ImguiManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +260,36 @@
     <ClInclude Include="SkinnedBox.h">
       <Filter>Header Files\Drawable</Filter>
     </ClInclude>
+    <ClInclude Include="imgui-1.88\imconfig.h">
+      <Filter>Header Files\MGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui-1.88\imgui.h">
+      <Filter>Header Files\MGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui-1.88\imgui_impl_dx11.h">
+      <Filter>Header Files\MGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui-1.88\imgui_impl_win32.h">
+      <Filter>Header Files\MGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui-1.88\imgui_internal.h">
+      <Filter>Header Files\MGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui-1.88\imstb_rectpack.h">
+      <Filter>Header Files\MGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui-1.88\imstb_textedit.h">
+      <Filter>Header Files\MGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui-1.88\imstb_truetype.h">
+      <Filter>Header Files\MGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImguiManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectXEngineTest.rc">
@@ -235,6 +298,15 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Downloads\gamecontroller_23721.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\cube.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\kappa50.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\save.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

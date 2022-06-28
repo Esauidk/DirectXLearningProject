@@ -2,6 +2,8 @@
 #include <sstream>
 #include <cmath>
 #include "GraphicsMacros.h"
+#include "imgui-1.88/imgui_impl_dx11.h"
+#include "imgui-1.88/imgui_impl_win32.h"
 
 namespace wrl = Microsoft::WRL;
 
@@ -110,9 +112,16 @@ Graphics::Graphics(HWND hWnd) {
 	vp.TopLeftX = 0.0f;
 	vp.TopLeftY = 0.0f;
 	pContext->RSSetViewports(1u, &vp);
+
+	ImGui_ImplDX11_Init(pDevice.Get(), pContext.Get());
 }
 
 void Graphics::EndFrame() {
+	if (imguiEnabled) {
+		ImGui::Render();
+		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	}
+
 	HRESULT hr;
 #ifdef NDEBUG
 	infoManager.Set();
@@ -127,7 +136,13 @@ void Graphics::EndFrame() {
 	}
 }
 
-void Graphics::ClearBuffer(float red, float green, float blue) noexcept {
+void Graphics::BeginFrame(float red, float green, float blue) noexcept {
+	if (imguiEnabled) {
+		ImGui_ImplDX11_NewFrame();
+		ImGui_ImplWin32_NewFrame();
+		ImGui::NewFrame();
+	}
+
 	const float color[] = { red, green, blue, 1.0f };
 	pContext->ClearRenderTargetView(pTarget.Get(), color);
 	pContext->ClearDepthStencilView(pDSV.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
@@ -334,6 +349,26 @@ void Graphics::SetProjecton(DirectX::FXMMATRIX proj) noexcept {
 
 DirectX::XMMATRIX Graphics::GetProjection() const noexcept {
 	return projection;
+}
+
+void Graphics::SetCamera(DirectX::FXMMATRIX camOri) noexcept {
+	camera = camOri;
+}
+
+DirectX::XMMATRIX Graphics::GetCamera() const noexcept {
+	return camera;
+}
+
+void Graphics::EnableImgui() noexcept {
+	imguiEnabled = true;
+}
+
+void Graphics::DisableImgui() noexcept {
+	imguiEnabled = false;
+}
+
+bool Graphics::IsImguiEnabled() const noexcept {
+	return imguiEnabled;
 }
 
 

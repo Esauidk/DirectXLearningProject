@@ -157,10 +157,19 @@
     <ClCompile Include="Bindable.cpp" />
     <ClCompile Include="BindableBase.cpp" />
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="DxgiInfoManager.cpp" />
     <ClCompile Include="GDIPlusManager.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="imgui-1.88\imgui.cpp" />
+    <ClCompile Include="imgui-1.88\imgui_demo.cpp" />
+    <ClCompile Include="imgui-1.88\imgui_draw.cpp" />
+    <ClCompile Include="imgui-1.88\imgui_impl_dx11.cpp" />
+    <ClCompile Include="imgui-1.88\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui-1.88\imgui_tables.cpp" />
+    <ClCompile Include="imgui-1.88\imgui_widgets.cpp" />
+    <ClCompile Include="ImguiManager.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="InputLayout.cpp" />
     <ClCompile Include="Keyboard.cpp" />
@@ -184,6 +193,7 @@
     <ClInclude Include="Bindable.h" />
     <ClInclude Include="BindableBase.h" />
     <ClInclude Include="Box.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="ChiliMath.h" />
     <ClInclude Include="Cone.h" />
     <ClInclude Include="ConstantBuffer.h" />
@@ -194,6 +204,15 @@
     <ClInclude Include="GDIPlusManager.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="GraphicsMacros.h" />
+    <ClInclude Include="imgui-1.88\imconfig.h" />
+    <ClInclude Include="imgui-1.88\imgui.h" />
+    <ClInclude Include="imgui-1.88\imgui_impl_dx11.h" />
+    <ClInclude Include="imgui-1.88\imgui_impl_win32.h" />
+    <ClInclude Include="imgui-1.88\imgui_internal.h" />
+    <ClInclude Include="imgui-1.88\imstb_rectpack.h" />
+    <ClInclude Include="imgui-1.88\imstb_textedit.h" />
+    <ClInclude Include="imgui-1.88\imstb_truetype.h" />
+    <ClInclude Include="ImguiManager.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="IndexedTriangleList.h" />
     <ClInclude Include="InputLayout.h" />
@@ -224,6 +243,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Downloads\gamecontroller_23721.ico" />
+    <Image Include="Images\cube.png" />
+    <Image Include="Images\kappa50.png" />
+    <Image Include="Images\save.png" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelShader.hlsl">
