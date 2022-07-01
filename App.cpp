@@ -10,7 +10,7 @@
 
 GDIPlusManager gdipm;
 
-App::App():wnd(800, 600, "Direct X Test"), timer(){
+App::App():wnd(800, 600, "Direct X Test"), timer(), light(wnd.Gfx()){
 	class Factory
 	{
 	public:
@@ -49,10 +49,10 @@ App::App():wnd(800, 600, "Direct X Test"), timer(){
 		std::uniform_real_distribution<float> ddist{ 0.0f,PI * 0.5f };
 		std::uniform_real_distribution<float> odist{ 0.0f,PI * 0.08f };
 		std::uniform_real_distribution<float> rdist{ 6.0f,20.0f };
-		std::uniform_real_distribution<float> bdist{ 0.4f,5.0f };
+		std::uniform_real_distribution<float> bdist{ 0.4f,3.0f };
 		std::uniform_int_distribution<int> latdist{ 5,20 };
 		std::uniform_int_distribution<int> longdist{ 10,40 };
-		std::uniform_int_distribution<int> typedist{ 0,2 };
+		std::uniform_int_distribution<int> typedist{ 0,0 };
 	};
 	
 
@@ -81,11 +81,16 @@ void App::DoFrame() {
 	
 	wnd.Gfx().BeginFrame(0.07f, 0.0f, 0.12f);
 	wnd.Gfx().SetCamera(cam.GetMatrix());
+	light.Bind(wnd.Gfx());
+
 	for (auto& b : drawables) {
 		b->Update(wnd.kbd.KeyIsPressed(VK_SPACE) ? 0.0f : dt);
 		b->Draw(wnd.Gfx());
 	}
 
+	light.Draw(wnd.Gfx());
+
+	// Window for Controlling Simulation Speed
 	if (ImGui::Begin("Simulation Speed")) {
 		ImGui::SliderFloat("Speed Factor", &speed_factor, 0.0f, 4.0f);
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
@@ -94,7 +99,11 @@ void App::DoFrame() {
 	}
 	ImGui::End();
 
+	// Window for Controlling Camera Settings
 	cam.SpawnControlWindow();
+
+	// Window for Controlling Light Settings
+	light.SpawnControlWindow();
 
 	wnd.Gfx().EndFrame();
 }

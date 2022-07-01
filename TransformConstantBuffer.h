@@ -6,6 +6,13 @@
 
 class TransformConstantBuffer : public Bindable
 {
+
+private:
+	struct Transforms {
+		DirectX::XMMATRIX modelViewProj;
+		DirectX::XMMATRIX model;
+	};
+
 public:
 	// Creates a constant buffer for the transform matrix
 	//
@@ -14,7 +21,7 @@ public:
 	TransformConstantBuffer(Graphics& gfx, const Drawable& parent);
 	void Bind(Graphics& gfx) noexcept override;
 private:
-	static std::unique_ptr<VertexConstantBuffer<DirectX::XMMATRIX>> transMatBuf;
+	static std::unique_ptr<VertexConstantBuffer<Transforms>> transMatBuf;
 	const Drawable& parent;
 };
 

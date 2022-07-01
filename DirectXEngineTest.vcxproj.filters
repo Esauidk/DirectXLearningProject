@@ -40,6 +40,15 @@
     <Filter Include="Source Files\MGUI">
       <UniqueIdentifier>{46326560-195e-4222-8fcf-986a28aa5307}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader\Lighting">
+      <UniqueIdentifier>{f7ca3f7c-4279-4aab-a9bb-085eb094931b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Lighting">
+      <UniqueIdentifier>{ec855c81-cc0e-43f6-89e3-4ba0c2df59e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Lighting">
+      <UniqueIdentifier>{dcce0e72-1aa6-494b-ab3f-2ad3001a0b62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -143,6 +152,12 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Source Files\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="SolidSphere.cpp">
+      <Filter>Source Files\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +305,12 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Header Files\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="SolidSphere.h">
+      <Filter>Header Files\Drawable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectXEngineTest.rc">
@@ -321,6 +342,18 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="PixelShaderWTexture.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongLightingPS.hlsl">
+      <Filter>Shader\Lighting</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongLightingVS.hlsl">
+      <Filter>Shader\Lighting</Filter>
+    </FxCompile>
+    <FxCompile Include="SolidPS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="SolidVS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
