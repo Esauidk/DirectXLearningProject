@@ -18,7 +18,7 @@ public:
 	//
 	// gfx: A reference to a Graphics instance
 	// parent: The object/model this transform matrix applies to
-	TransformConstantBuffer(Graphics& gfx, const Drawable& parent);
+	TransformConstantBuffer(Graphics& gfx, const Drawable& parent, UINT slot = 0u);
 	void Bind(Graphics& gfx) noexcept override;
 private:
 	static std::unique_ptr<VertexConstantBuffer<Transforms>> transMatBuf;

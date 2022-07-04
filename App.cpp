@@ -20,12 +20,14 @@ App::App():wnd(800, 600, "Direct X Test"), timer(), light(wnd.Gfx()){
 		{}
 		std::unique_ptr<Drawable> operator()()
 		{
+			const DirectX::XMFLOAT3 material = { cdist(rng), cdist(rng), cdist(rng) };
 			switch (typedist(rng))
 			{
 			case 0:
 				return std::make_unique<Box>(
 					gfx, rng, adist, ddist,
-					odist, rdist, bdist
+					odist, rdist, bdist, 
+					material
 					);
 			case 1:
 				return std::make_unique<Sheet>(
@@ -50,6 +52,7 @@ App::App():wnd(800, 600, "Direct X Test"), timer(), light(wnd.Gfx()){
 		std::uniform_real_distribution<float> odist{ 0.0f,PI * 0.08f };
 		std::uniform_real_distribution<float> rdist{ 6.0f,20.0f };
 		std::uniform_real_distribution<float> bdist{ 0.4f,3.0f };
+		std::uniform_real_distribution<float> cdist{ 0.0f,1.0f };
 		std::uniform_int_distribution<int> latdist{ 5,20 };
 		std::uniform_int_distribution<int> longdist{ 10,40 };
 		std::uniform_int_distribution<int> typedist{ 0,0 };
@@ -81,7 +84,7 @@ void App::DoFrame() {
 	
 	wnd.Gfx().BeginFrame(0.07f, 0.0f, 0.12f);
 	wnd.Gfx().SetCamera(cam.GetMatrix());
-	light.Bind(wnd.Gfx());
+	light.Bind(wnd.Gfx(), cam.GetMatrix());
 
 	for (auto& b : drawables) {
 		b->Update(wnd.kbd.KeyIsPressed(VK_SPACE) ? 0.0f : dt);

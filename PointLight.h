@@ -10,14 +10,19 @@ public:
 	void SpawnControlWindow() noexcept;
 	void Reset() noexcept;
 	void Draw(Graphics& gfx) const noexcept(!IS_DEBUG);
-	void Bind(Graphics& gfx) const noexcept;
+	void Bind(Graphics& gfx, DirectX::FXMMATRIX view) const noexcept;
 private:
 	struct PointLightConstantBuf {
-		DirectX::XMFLOAT3 pos;
-		float padding;
+		alignas(16)DirectX::XMFLOAT3 pos;
+		alignas(16)DirectX::XMFLOAT3 diffuseColor;
+		alignas(16)DirectX::XMFLOAT3 ambientColor;
+		float diffuseIntensity;
+		float constAttenuation;
+		float linearAuttenuation;
+		float quadraticAuttenuation;
 	};
 private:
-	DirectX::XMFLOAT3 pos = { 0.0f, 0.0f, 0.0f };
+	PointLightConstantBuf cbData;
 	mutable SolidSphere modelMesh;
 	mutable PixelConstantBuffer<PointLightConstantBuf> cbuf;
 };

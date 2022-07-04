@@ -1,19 +1,19 @@
 #include "TransformConstantBuffer.h"
 #include "GraphicsMacros.h"
 
-TransformConstantBuffer::TransformConstantBuffer(Graphics& gfx, const Drawable& parent) : parent(parent) {
+TransformConstantBuffer::TransformConstantBuffer(Graphics& gfx, const Drawable& parent, UINT slot) : parent(parent) {
 	if (!transMatBuf) {
-		transMatBuf = std::make_unique<VertexConstantBuffer<Transforms>>(gfx);
+		transMatBuf = std::make_unique<VertexConstantBuffer<Transforms>>(gfx, slot);
 	}
 };
 
 void TransformConstantBuffer::Bind(Graphics& gfx) noexcept {
-	const auto model = parent.GetTransformXM();
+	const auto modelView = parent.GetTransformXM() * gfx.GetCamera();
 
 	const Transforms tf = {
-		DirectX::XMMatrixTranspose(model),
+		DirectX::XMMatrixTranspose(modelView),
 		DirectX::XMMatrixTranspose(
-			model * gfx.GetCamera() * gfx.GetProjection()
+			modelView * gfx.GetProjection()
 			)
 	};
 
