@@ -1,0 +1,23 @@
+cbuffer Cbuf
+{
+    matrix modelView;
+    matrix modelViewProj;
+};
+
+struct VSOut
+{
+    float3 cameraPos : Position;
+    float3 normal : Normal;
+    float3 color : Color;
+    float4 pos : SV_Position;
+};
+
+VSOut main( float3 pos : Position, float3 normal: Normal, float3 color : Color )
+{
+    VSOut vso;
+    vso.cameraPos = (float3) mul(float4(pos, 1.0f), modelView);
+    vso.normal = mul(normal, (float3x3) modelView);
+    vso.pos = mul(float4(pos, 1.0f), modelViewProj);
+    vso.color = color;
+	return vso;
+}

@@ -124,4 +124,37 @@ public:
 			}
 		};
 	}
+
+	template<class V>
+	static IndexTriangleList<V> MakeIndependentTextured()
+	{
+		auto itl = MakeIndependent<V>();
+
+		itl.vertices[0].texCoord = { 0.0f,0.0f };
+		itl.vertices[1].texCoord = { 1.0f,0.0f };
+		itl.vertices[2].texCoord = { 0.0f,1.0f };
+		itl.vertices[3].texCoord = { 1.0f,1.0f };
+		itl.vertices[4].texCoord = { 0.0f,0.0f };
+		itl.vertices[5].texCoord = { 1.0f,0.0f };
+		itl.vertices[6].texCoord = { 0.0f,1.0f };
+		itl.vertices[7].texCoord = { 1.0f,1.0f };
+		itl.vertices[8].texCoord = { 0.0f,0.0f };
+		itl.vertices[9].texCoord = { 1.0f,0.0f };
+		itl.vertices[10].texCoord = { 0.0f,1.0f };
+		itl.vertices[11].texCoord = { 1.0f,1.0f };
+		itl.vertices[12].texCoord = { 0.0f,0.0f };
+		itl.vertices[13].texCoord = { 1.0f,0.0f };
+		itl.vertices[14].texCoord = { 0.0f,1.0f };
+		itl.vertices[15].texCoord = { 1.0f,1.0f };
+		itl.vertices[16].texCoord = { 0.0f,0.0f };
+		itl.vertices[17].texCoord = { 1.0f,0.0f };
+		itl.vertices[18].texCoord = { 0.0f,1.0f };
+		itl.vertices[19].texCoord = { 1.0f,1.0f };
+		itl.vertices[20].texCoord = { 0.0f,0.0f };
+		itl.vertices[21].texCoord = { 1.0f,0.0f };
+		itl.vertices[22].texCoord = { 0.0f,1.0f };
+		itl.vertices[23].texCoord = { 1.0f,1.0f };
+
+		return itl;
+	}
 };

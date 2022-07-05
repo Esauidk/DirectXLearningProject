@@ -1,12 +1,14 @@
 #include "App.h"
-#include "Box.h"
-#include "SkinnedBox.h"
 #include <memory>
-#include "Sheet.h"
-#include "Surface.h"
 #include "GDIPlusManager.h"
 #include "ChiliMath.h"
 #include "imgui-1.88/imgui.h"
+#include "Box.h"
+#include "SkinnedBox.h"
+#include "Sheet.h"
+#include "Surface.h"
+#include "Cylinder.h"
+#include "Pyramid.h"
 
 GDIPlusManager gdipm;
 
@@ -30,12 +32,22 @@ App::App():wnd(800, 600, "Direct X Test"), timer(), light(wnd.Gfx()){
 					material
 					);
 			case 1:
-				return std::make_unique<Sheet>(
+				return std::make_unique<Cylinder>(
+					gfx, rng, adist, ddist,
+					odist, rdist, bdist,
+					tessdist
+					);
+			case 2:
+				return std::make_unique<Pyramid>(
+					gfx, rng, adist, ddist,
+					odist, rdist, tessdist);
+			case 3:
+				return std::make_unique<SkinnedBox>(
 					gfx, rng, adist, ddist,
 					odist, rdist
 					);
-			case 2:
-				return std::make_unique<SkinnedBox>(
+			case 4:
+				return std::make_unique<Sheet>(
 					gfx, rng, adist, ddist,
 					odist, rdist
 					);
@@ -53,9 +65,10 @@ App::App():wnd(800, 600, "Direct X Test"), timer(), light(wnd.Gfx()){
 		std::uniform_real_distribution<float> rdist{ 6.0f,20.0f };
 		std::uniform_real_distribution<float> bdist{ 0.4f,3.0f };
 		std::uniform_real_distribution<float> cdist{ 0.0f,1.0f };
+		std::uniform_int_distribution<int> tessdist{ 3, 30 };
 		std::uniform_int_distribution<int> latdist{ 5,20 };
 		std::uniform_int_distribution<int> longdist{ 10,40 };
-		std::uniform_int_distribution<int> typedist{ 0,0 };
+		std::uniform_int_distribution<int> typedist{ 0,3 };
 	};
 	
 

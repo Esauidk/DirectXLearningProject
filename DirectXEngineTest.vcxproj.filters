@@ -40,14 +40,29 @@
     <Filter Include="Source Files\MGUI">
       <UniqueIdentifier>{46326560-195e-4222-8fcf-986a28aa5307}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shader\Lighting">
-      <UniqueIdentifier>{f7ca3f7c-4279-4aab-a9bb-085eb094931b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Lighting">
       <UniqueIdentifier>{ec855c81-cc0e-43f6-89e3-4ba0c2df59e6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Lighting">
       <UniqueIdentifier>{dcce0e72-1aa6-494b-ab3f-2ad3001a0b62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\No Lighting%28Unlit%29">
+      <UniqueIdentifier>{de5e33e3-1a8a-4490-bcb5-b20875e5e9ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\Lighting%28Lit%29">
+      <UniqueIdentifier>{f7ca3f7c-4279-4aab-a9bb-085eb094931b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\Lighting%28Lit%29\Blended">
+      <UniqueIdentifier>{056a36bb-4630-452c-aef9-03f4cc555f0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\Lighting%28Lit%29\Indexed">
+      <UniqueIdentifier>{cf5629c7-38b8-4b06-ae30-1b15dfc5ca18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\Lighting%28Lit%29\Normal">
+      <UniqueIdentifier>{5ddcc9ad-97c7-4ed1-ba3d-ba67405d88ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\Lighting%28Lit%29\Texture">
+      <UniqueIdentifier>{995346d6-f382-48c9-b9d6-e3097970be1b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +172,12 @@
       <Filter>Source Files\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="SolidSphere.cpp">
+      <Filter>Source Files\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Cylinder.cpp">
+      <Filter>Source Files\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Pyramid.cpp">
       <Filter>Source Files\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
@@ -314,6 +335,12 @@
     <ClInclude Include="TestObject.h">
       <Filter>Header Files\Drawable</Filter>
     </ClInclude>
+    <ClInclude Include="Cylinder.h">
+      <Filter>Header Files\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="Pyramid.h">
+      <Filter>Header Files\Drawable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectXEngineTest.rc">
@@ -335,29 +362,44 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="VertexShader.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="BlendedPhongLightingPS.hlsl">
+      <Filter>Shader\Lighting%28Lit%29\Blended</Filter>
     </FxCompile>
-    <FxCompile Include="PixelShader.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="BlendedPhongLightingVS.hlsl">
+      <Filter>Shader\Lighting%28Lit%29\Blended</Filter>
     </FxCompile>
-    <FxCompile Include="VertexShaderWTexture.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="PixelShaderWTexture.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="IndexedPhongLightingPS.hlsl">
+      <Filter>Shader\Lighting%28Lit%29\Indexed</Filter>
     </FxCompile>
     <FxCompile Include="PhongLightingPS.hlsl">
-      <Filter>Shader\Lighting</Filter>
+      <Filter>Shader\Lighting%28Lit%29\Normal</Filter>
     </FxCompile>
     <FxCompile Include="PhongLightingVS.hlsl">
-      <Filter>Shader\Lighting</Filter>
+      <Filter>Shader\Lighting%28Lit%29\Normal</Filter>
+    </FxCompile>
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>Shader\No Lighting%28Unlit%29</Filter>
+    </FxCompile>
+    <FxCompile Include="PixelShaderWTexture.hlsl">
+      <Filter>Shader\No Lighting%28Unlit%29</Filter>
     </FxCompile>
     <FxCompile Include="SolidPS.hlsl">
-      <Filter>Shader</Filter>
+      <Filter>Shader\No Lighting%28Unlit%29</Filter>
     </FxCompile>
     <FxCompile Include="SolidVS.hlsl">
-      <Filter>Shader</Filter>
+      <Filter>Shader\No Lighting%28Unlit%29</Filter>
+    </FxCompile>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>Shader\No Lighting%28Unlit%29</Filter>
+    </FxCompile>
+    <FxCompile Include="VertexShaderWTexture.hlsl">
+      <Filter>Shader\No Lighting%28Unlit%29</Filter>
+    </FxCompile>
+    <FxCompile Include="TexturePhongLightingVS.hlsl">
+      <Filter>Shader\Lighting%28Lit%29\Texture</Filter>
+    </FxCompile>
+    <FxCompile Include="TexturePhongLightingPS.hlsl">
+      <Filter>Shader\Lighting%28Lit%29\Texture</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

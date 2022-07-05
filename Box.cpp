@@ -52,10 +52,10 @@ Box::Box(Graphics& gfx,
 	}
 	
 	struct PSMaterialConstant {
-		alignas(16)dx::XMFLOAT3 color;
+		dx::XMFLOAT3 color;
 		float specularIntensity = 0.6f;
 		float specularPower = 30.0f;
-		float padding[2];
+		float padding[3];
 	}colorConst;
 
 	colorConst.color = materialColor;
