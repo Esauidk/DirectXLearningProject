@@ -64,6 +64,9 @@
     <Filter Include="Shader\Lighting%28Lit%29\Texture">
       <UniqueIdentifier>{995346d6-f382-48c9-b9d6-e3097970be1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{444bdef0-4ae8-457f-8569-ae60d14bf1b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -178,6 +181,9 @@
       <Filter>Source Files\Drawable</Filter>
     </ClCompile>
     <ClCompile Include="Pyramid.cpp">
+      <Filter>Source Files\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetTest.cpp">
       <Filter>Source Files\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
@@ -339,6 +345,9 @@
       <Filter>Header Files\Drawable</Filter>
     </ClInclude>
     <ClInclude Include="Pyramid.h">
+      <Filter>Header Files\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetTest.h">
       <Filter>Header Files\Drawable</Filter>
     </ClInclude>
   </ItemGroup>

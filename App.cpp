@@ -9,10 +9,12 @@
 #include "Surface.h"
 #include "Cylinder.h"
 #include "Pyramid.h"
+#include "AssetTest.h"
 
 GDIPlusManager gdipm;
 
 App::App():wnd(800, 600, "Direct X Test"), timer(), light(wnd.Gfx()){
+
 	class Factory
 	{
 	public:
@@ -47,6 +49,10 @@ App::App():wnd(800, 600, "Direct X Test"), timer(), light(wnd.Gfx()){
 					odist, rdist
 					);
 			case 4:
+				return std::make_unique<AssetTest>(
+					gfx, rng, adist, ddist, 
+					odist, rdist, material, 1.5f);
+			case 5:
 				return std::make_unique<Sheet>(
 					gfx, rng, adist, ddist,
 					odist, rdist
@@ -68,7 +74,7 @@ App::App():wnd(800, 600, "Direct X Test"), timer(), light(wnd.Gfx()){
 		std::uniform_int_distribution<int> tessdist{ 3, 30 };
 		std::uniform_int_distribution<int> latdist{ 5,20 };
 		std::uniform_int_distribution<int> longdist{ 10,40 };
-		std::uniform_int_distribution<int> typedist{ 0,3 };
+		std::uniform_int_distribution<int> typedist{ 0,4 };
 	};
 	
 
